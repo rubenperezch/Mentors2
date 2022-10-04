@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Main Page</title>
+
+</head>
+<body>
+
+
+
+<h2>List of Mentors</h2>
+
+<table style="float:top">
+    <tr>
+        <th>Name</th>
+    </tr>
+    <div th:each="mentor : ${mentors}" th:object="${mentor}">
+        <tr>
+            <td th:text="${mentor.name}" th:href="|window.location.href='/mentor/' + ${mentor.id} + ''|"></td>
+            <td> <button type="button" th:onclick="|window.location.href='/mentor/' + ${mentor.id} + ''|">edit</button></td>
+
+        </tr>
+    </div>
+</table>
+
+<h1>Register New User</h1>
+
+<form style="float:top" th:action = "@{/mentor}" action = "#" method = "post">
+    <div class = "input-field">
+        <label for ="mentorName">name:</label>
+        <input type="mentorName" id = "mentorName" name = "mentorName">
+    </div>
+    <div class = "selector">
+        <p>Select Class Subject</p>
+        <select th:name="className">
+            <option th:each="class : ${classes}" th:text="${class.className}"></option>
+        </select>
+            </div>
+    <div class = "input-field">
+        <input type = "submit" value = "Register User">
+    </div>
+</form>
+
+
+</body>
+</html>
